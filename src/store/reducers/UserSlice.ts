@@ -1,5 +1,6 @@
 import type {IUser} from "../../models/IUser.ts";
 import {createSlice} from "@reduxjs/toolkit";
+import type PayloadAction from "@reduxjs/toolkit";
 
 interface UserState {
     users: IUser[];
