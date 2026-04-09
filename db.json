@@ -1,8 +1,42 @@
 {
   "$schema": "./node_modules/json-server/schema.json",
   "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
+    { "id": 1, "title": "a title", "body": "100",
+      "userId": 1
+    },
+    { "id": 2, "title": "another title", "body": "200",
+      "userId": 1
+    },
+    { "id": 3, "title": "a title", "body": "100",
+      "userId": 1
+    },
+    { "id": 4, "title": "another title", "body": "200",
+      "userId": 1
+    },
+    { "id": 5, "title": "a title", "body": "100",
+      "userId": 1
+    },
+    { "id": 6, "title": "another title", "body": "200",
+      "userId": 1
+    },
+    { "id": 7, "title": "a title", "body": "100",
+      "userId": 1
+    },
+    { "id": 8, "title": "another title", "body": "200",
+      "userId": 1
+    },
+    { "id": 9, "title": "a title", "body": "100",
+      "userId": 1
+    },
+    { "id": 10, "title": "another title", "body": "200",
+      "userId": 1
+    },
+    { "id": 11, "title": "a title", "body": "100",
+      "userId": 1
+    },
+    { "id": 12, "title": "another title", "body": "200",
+      "userId": 1
+    }
   ],
   "comments": [
     { "id": "1", "text": "a comment about post 1", "postId": "1" },
