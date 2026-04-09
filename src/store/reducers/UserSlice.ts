@@ -15,7 +15,6 @@ const initialState: UserState = {
     error: "",
 }
 
-
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -32,8 +31,8 @@ export const userSlice = createSlice({
             .addCase(fetchUsers.rejected, (state, action: PayloadAction<string>) => {
                 state.isLoading = false;
                 state.error = action.payload;
-            })
-    }
+            });
+    },
 });
 
 export default userSlice.reducer;
