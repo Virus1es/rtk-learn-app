@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
 });
 
 export const setupStore = () => {
-    return configureStore({
+    return configureStore<RootState>({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware().concat(postAPI.middleware)
