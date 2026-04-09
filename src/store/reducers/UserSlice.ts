@@ -1,6 +1,7 @@
 import type {IUser} from "../../models/IUser.ts";
 import {createSlice} from "@reduxjs/toolkit";
 import type PayloadAction from "@reduxjs/toolkit";
+import {fetchUsers} from "./ActionCreators.ts";
 
 interface UserState {
     users: IUser[];
@@ -33,6 +34,23 @@ export const userSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         }
+    },
+    // вызываются для асинхронных actions созданных через createAsyncThunk
+    extraReducers: {
+        [fetchUsers.pending.type]: (state) => {
+            state.isLoading = true;
+        },
+
+        [fetchUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+            state.isLoading = false;
+            state.error = '';
+            state.users = action.payload;
+        },
+
+        [fetchUsers.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
     }
 });
 
