@@ -6,12 +6,21 @@ import type {IPost} from "../models/IPost.ts";
 const PostContainer = () => {
     const [limit, setLimit] = useState(120);
     const {data: posts, error, isLoading} = postAPI.useFetchAllPostsQuery(limit);
-
     const [createPost, {}] = postAPI.useCreatePostMutation();
+    const [updatePost, {}] = postAPI.useUpdatePostMutation();
+    const [deletePost, {}] = postAPI.useDeletePostMutation();
 
     const handleCreate = async () => {
         const title = prompt();
         await createPost({title, body: title} as IPost);
+    }
+
+    const handleRemove = async (post: IPost) => {
+        deletePost(post);
+    }
+
+    const handleUpdate = async (post: IPost) => {
+        updatePost(post);
     }
 
     return (
@@ -20,7 +29,11 @@ const PostContainer = () => {
             {isLoading && <h1>Идёт загрузка</h1>}
             {error && <h1 style={{color: 'red'}}>Произошла ошибка</h1>}
             {posts?.data && posts.data.map(post =>
-                <PostItem key={post.id} post={post}/>
+                <PostItem remove={handleRemove}
+                          update={handleUpdate}
+                          key={post.id}
+                          post={post}
+                />
             )}
         </div>
     );
