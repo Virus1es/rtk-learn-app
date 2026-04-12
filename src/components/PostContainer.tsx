@@ -4,7 +4,7 @@ import PostItem from "./PostItem.tsx";
 import type {IPost} from "../models/IPost.ts";
 
 const PostContainer = () => {
-    const [limit, setLimit] = useState(100);
+    const [limit, setLimit] = useState(120);
     const {data: posts, error, isLoading} = postAPI.useFetchAllPostsQuery(limit);
 
     const [createPost, {}] = postAPI.useCreatePostMutation();
@@ -19,7 +19,7 @@ const PostContainer = () => {
             <button onClick={handleCreate}>Add new post</button>
             {isLoading && <h1>Идёт загрузка</h1>}
             {error && <h1 style={{color: 'red'}}>Произошла ошибка</h1>}
-            {posts && posts.map(post =>
+            {posts?.data && posts.data.map(post =>
                 <PostItem key={post.id} post={post}/>
             )}
         </div>

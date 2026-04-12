@@ -7,18 +7,25 @@ export const postAPI = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:3000'
     }),
+    tagTypes: ['Post'],
     endpoints: (build) => ({
         fetchAllPosts: build.query<IPost[], void>({
-            query: () => ({
+            query: (limit = 5) => ({
                 url: '/posts',
-            })
+                params: {
+                    _page: 1,
+                    _per_page: limit
+                }
+            }),
+            providesTags: result => ['Post']
         }),
         createPost: build.mutation<IPost, IPost>({
             query: (post) => ({
                 url: '/posts',
                 method: 'POST',
                 body: post
-            })
+            }),
+            invalidatesTags: ['Post']
         })
     })
 });
