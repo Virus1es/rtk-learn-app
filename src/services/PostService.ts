@@ -11,7 +11,13 @@ export const postAPI = createApi({
         fetchAllPosts: build.query<IPost[], void>({
             query: () => ({
                 url: '/posts',
-
+            })
+        }),
+        createPost: build.mutation<IPost, IPost>({
+            query: (post) => ({
+                url: '/posts',
+                method: 'POST',
+                body: post
             })
         })
     })
